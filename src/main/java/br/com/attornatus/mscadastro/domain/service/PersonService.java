@@ -37,7 +37,9 @@ public class PersonService {
 	@Transactional
 	public Person create(Person person) {
 		person = personRepository.save(person);
-		enderecoRepository.saveAll(person.getEnderecos());
+		if(!person.getEnderecos().isEmpty()) {
+			enderecoRepository.saveAll(person.getEnderecos());			
+		}
 
 		return person;
 	}

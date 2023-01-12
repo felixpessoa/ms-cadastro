@@ -33,7 +33,7 @@ public class EnderecoService {
 	}
 
 	public Endereco create(Endereco endereco) {
-		return endereco = enderecoRepository.save(endereco);
+		return enderecoRepository.save(endereco);
 	}
 
 	public Endereco update(Long id, @Valid Endereco obj) {

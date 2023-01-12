@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -20,8 +21,8 @@ public class PersonNewDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min = 2, max = 250, message="O tamanho deve ser entre 2 e 250 caracteres")
 	private String nome;
-	@NotEmpty(message = "Preenchimento obrigatório")
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataDeNascimento;
 	

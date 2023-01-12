@@ -3,6 +3,8 @@ package br.com.attornatus.mscadastro.controller;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +28,7 @@ public class EnderecoController {
 	private EnderecoService enderecoService;
 	
 	@PostMapping
-	public ResponseEntity<Endereco> save(@RequestBody EnderecoNewDTO objDTO){
+	public ResponseEntity<Endereco> save(@Valid @RequestBody EnderecoNewDTO objDTO){
 		Endereco obj =  enderecoService.fromDTO(objDTO);
 		enderecoService.create(obj);;
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId())

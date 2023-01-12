@@ -47,8 +47,18 @@ public class EnderecoService {
 		newObj.setCep(obj.getCep());
 		newObj.setNumero(obj.getNumero());
 		newObj.setCidade(obj.getCidade());
+		if(obj.isPrincipal()) {
+			Endereco e2 = enderecoRepository.findByPersonTrue(newObj.getPerson().getId());
+			if(e2 != null) {
+				e2.setPrincipal(false);
+				enderecoRepository.save(e2);
+			}
+		}
 		newObj.setPrincipal(obj.isPrincipal());
-		newObj.setPerson(obj.getPerson());
+		
+		if(obj.getPerson()!=null) {
+			newObj.setPerson(obj.getPerson());
+		}
 	}
 
 	public Endereco fromDTO(EnderecoNewDTO objDTO) {

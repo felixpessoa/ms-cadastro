@@ -11,6 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -24,6 +27,8 @@ public class Person implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min = 2, max = 250, message="O tamanho deve ser entre 2 e 250 caracteres")
 	private String nome;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataDeNascimento;

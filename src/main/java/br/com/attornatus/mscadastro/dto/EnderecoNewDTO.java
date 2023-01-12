@@ -1,13 +1,10 @@
 package br.com.attornatus.mscadastro.dto;
 
-import java.time.LocalDate;
-import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.Length;
 
-import br.com.attornatus.mscadastro.domain.model.Endereco;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,11 +15,11 @@ public class EnderecoNewDTO {
 	
 	private String logradouro;
 	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min = 8, max = 9, message="O tamanho deve ser entre 8 e 9 caracteres")
 	private String cep;
 	private String numero;
 	private String cidade;
 	private boolean principal;
-	@NotEmpty(message = "Preenchimento obrigatório")
 	private Long person;
 	
 	public EnderecoNewDTO() {

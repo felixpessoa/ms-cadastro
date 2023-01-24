@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.attornatus.mscadastro.domain.model.Person;
 import br.com.attornatus.mscadastro.domain.service.PersonService;
+import br.com.attornatus.mscadastro.dto.PersonDTO;
 import br.com.attornatus.mscadastro.dto.PersonNewDTO;
 
 @RestController
@@ -43,8 +44,9 @@ public class PersonController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Person> findById(@PathVariable Long id){
-		return ResponseEntity.ok().body(personService.getById(id));
+	public ResponseEntity<PersonDTO> findById(@PathVariable Long id){
+		PersonDTO objResponse = new PersonDTO(personService.getById(id));
+		return ResponseEntity.ok().body(objResponse);
 	}
 	
 	@GetMapping
